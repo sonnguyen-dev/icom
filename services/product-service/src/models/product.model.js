@@ -22,7 +22,14 @@ class Product extends Sequelize.Model {
           type: DataTypes.STRING, defaultValue: 'Unspecific',
         },
       },
-      { sequelize, indexes: [{ unique: true, fields: ['id'] }] },
+      {
+        sequelize,
+        indexes: [
+          { unique: true, fields: ['id'] },
+          { fields: ['name'] },
+          { fields: ['name', 'color', 'brand'] },
+        ],
+      },
     );
   }
 

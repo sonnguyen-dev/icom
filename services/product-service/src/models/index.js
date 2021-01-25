@@ -11,7 +11,7 @@ const sequelize = new Sequelize(
   DB_USERNAME,
   DB_PASSWORD,
   {
-    dialect: 'mysql',
+    dialect: 'postgres',
     host: DB_HOST,
     port: DB_PORT,
   },
