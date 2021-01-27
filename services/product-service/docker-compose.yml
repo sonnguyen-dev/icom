@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    ports:
+     - "9090:9090"
+    depends_on:
+      - db
+    environment:
+      APP_PORT: 9090
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USERNAME: icom
+      DB_PASSWORD: icom123
+      DB_NAME: icom
+  db:
+    image: postgres:12
+    restart: always
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: icom
+      POSTGRES_PASSWORD: icom123
+      POSTGRES_DB: icom
+
+volumes:
+  postgres:

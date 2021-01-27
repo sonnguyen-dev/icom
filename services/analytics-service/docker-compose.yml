@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    ports:
+     - "9091:9091"
+    depends_on:
+      - es
+    environment:
+      APP_PORT: 9091
+      ES_HOST: es
+      ES_PORT: 9200
+  es:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.2
+    restart: always
+    ports:
+      - "9200:9200"
+    environment:
+      discovery.type: single-node
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+volumes:
+  esdata:
